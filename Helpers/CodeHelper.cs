@@ -8,9 +8,19 @@ namespace DevUtility.Helpers
 {
     public static class CodeHelper
     {
-        public static bool IsEmpty<T>(this T value)
+        public static bool IsEmpty(this ICollection data)
         {
-            return value == null ;
+            if (data != null)
+            {
+                return data.Count == 0;
+            }
+    
+            return true;
+        }
+        
+        public static bool IsNotEmpty(this ICollection data)
+        {
+            return !data.IsEmpty();
         }
     }
 }
