@@ -17,6 +17,8 @@
         <StackPanel Grid.Column="1" Margin="5">
             <TextBlock Text="Thông tin lớp:" FontWeight="Bold" Margin="0,0,0,10"/>
             <TextBox Name="OutputClassInfo" Height="300" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
+            <TextBlock Text="Generated TypeScript Code:" FontWeight="Bold" Margin="0,10,0,0"/>
+            <TextBox Name="OutputTypeScriptCode" Height="300" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
         </StackPanel>
     </Grid>
 </Window>

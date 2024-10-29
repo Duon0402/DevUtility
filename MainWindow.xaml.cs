@@ -1,7 +1,4 @@
-﻿using DevUtility.Base;
-using DevUtility.Models;
-using DevUtility.Models.GenCode;
-using DevUtility.Services;
+﻿using DevUtility.Services;
 using System.Windows;
 
 namespace DevUtility
@@ -29,10 +26,21 @@ namespace DevUtility
                 {
                     OutputClassInfo.Text += $"- {prop.Name}: {prop.Type}\n";
                 }
+
+                // Generate TypeScript class
+                var tsResult = genCodeService.GenCodeModelTS(classInfo);
+                if (tsResult.IsOk())
+                {
+                    OutputTypeScriptCode.Text = tsResult.Data; // Display the generated TypeScript code
+                }
+                else
+                {
+                    OutputTypeScriptCode.Text = $"Lỗi: {tsResult.Message}"; // Display error if TypeScript generation fails
+                }
             }
             else
             {
-                OutputClassInfo.Text = $"Lỗi: {result.Message}";
+                OutputClassInfo.Text = $"Lỗi: {result.Message}"; // Display error if class information extraction fails
             }
         }
     }

@@ -1,6 +1,6 @@
 ﻿using DevUtility.Base;
 using DevUtility.Models;
-using DevUtility.Models.GenCode;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace DevUtility.Services
@@ -30,7 +30,7 @@ namespace DevUtility.Services
                 var className = classMatch.Groups[1].Value;
                 var classBody = classMatch.Groups[2].Value;
 
-                const string pattern2 = @"public\s+((?:List<\w+>|[\w?]+(?:\[\])?)|[\w<>]+\s*[\w\s,]*)\s+(\w+)\s*\{\s*get;\s*set;\s*\};";
+                const string pattern2 = @"public\s+((?:List<\w+>|[\w?]+(?:\[\])?)|[\w<>]+\s*[\w\s,]*)\s+(\w+)\s*\{\s*get;\s*set;\s*\}";
                 var propsMatch = Regex.Matches(classBody, pattern2);
 
                 var listProps = new List<PropertyInforModel>();
@@ -44,14 +44,84 @@ namespace DevUtility.Services
                     listProps.Add(prop);
                 }
 
-                var rs = new ClassInforModel(className, listProps);
+                var rs = new ClassInforModel()
+                {
+                    ClassName = className,
+                    Properties = listProps
+                };
+
                 return Result.Ok(rs);
             }
             catch (Exception ex)
             {
-                msg = "Đã có lỗi xảy ra Khi GetClassInfor";
+                msg = "Đã có lỗi xảy ra khi GetClassInfor";
                 return Result.Exception<ClassInforModel>(msg, ex);
             }
+        }
+
+        public Result<string> GenCodeModelTS(ClassInforModel classInfor)
+        {
+            string msg;
+            var rs = new StringBuilder();
+            try
+            {
+                if (classInfor == null)
+                {
+                    msg = "Dữ liệu đầu vào không hợp lệ";
+                    return Result.Error<string>("01", msg);
+                }
+
+                rs.AppendLine($"namespace My {{");
+                rs.AppendFormat("\texport class {0} extends ViewModel {{\n", classInfor.ClassName);
+
+                foreach (var prop in classInfor.Properties!)
+                {
+                    string tsType = MapTypeCSharpToTS(prop.Type);
+                    rs.AppendFormat("\t\tpublic {0}: {1};\n", prop.Name, tsType);
+                }
+
+                rs.AppendLine("\t}");
+                rs.AppendLine("}");
+
+                return Result.Ok<string>(rs.ToString());
+            }
+            catch (Exception ex)
+            {
+                msg = "Đã có lỗi xảy khi GenCodeModelTS";
+                return Result.Exception<string>(msg, ex);
+            }
+        }
+
+        public Result<string> GenCodeIndexTS()
+        {
+            string msg;
+            var rs = new StringBuilder();
+            try
+            {
+
+                return Result.Ok("");
+            }
+            catch (Exception ex)
+            {
+                msg = "Đã có lỗi xảy ra khi GenCodeIndexTS";
+                return Result.Exception<string>(msg, ex);
+            }
+        }
+
+        private string MapTypeCSharpToTS(string type)
+        {
+            return type switch
+            {
+                "string" => "string",
+                "int" => "number",
+                "decimal" => "number",
+                "float" => "number",
+                "double" => "number",
+                "bool" => "boolean",
+                "DateTime" => "Date",
+                _ => "any"
+
+            };
         }
     }
 }
