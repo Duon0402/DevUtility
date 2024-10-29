@@ -1,35 +1,38 @@
 ﻿using DevUtility.Base;
 using DevUtility.Models;
+using DevUtility.Models.GenCode;
 using DevUtility.Services;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace DevUtility
 {
     public partial class MainWindow : Window
     {
-        private GenCodeService _genCodeService;
-
         public MainWindow()
         {
             InitializeComponent();
-            _genCodeService = new GenCodeService();
         }
 
-        private async void GenerateButton_Click(object sender, RoutedEventArgs e)
+        private void GenerateButton_Click(object sender, RoutedEventArgs e)
         {
-            string indexInput = InputCSharpCode.Text;
-            var indexModel = await _genCodeService.GetClassInfor(indexInput);
-            var result = await _genCodeService.GenCodeCSharpToTS(indexModel.Data, null, null);
+            string cSharpCode = InputCSharpCode.Text;
 
+            var genCodeService = new GenCodeService();
+            var result = genCodeService.GetClassInfor(cSharpCode);
 
             if (result.IsOk())
             {
-                OutputTypeScriptCode.Text = result.Data!.CodeIndexModel;
+                var classInfo = result.Data;
+                OutputClassInfo.Text = $"Class Name: {classInfo!.ClassName}\n";
+                OutputClassInfo.Text += "Properties:\n";
+                foreach (var prop in classInfo.Properties!)
+                {
+                    OutputClassInfo.Text += $"- {prop.Name}: {prop.Type}\n";
+                }
             }
             else
             {
-                MessageBox.Show(result.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                OutputClassInfo.Text = $"Lỗi: {result.Message}";
             }
         }
     }

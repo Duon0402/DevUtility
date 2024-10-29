@@ -14,10 +14,10 @@ namespace DevUtility.Helpers
             {
                 return data.Count == 0;
             }
-    
+
             return true;
         }
-        
+
         public static bool IsNotEmpty(this ICollection data)
         {
             return !data.IsEmpty();

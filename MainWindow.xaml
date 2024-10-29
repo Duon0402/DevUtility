@@ -5,9 +5,7 @@
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <!-- Cột cho mã C# -->
             <ColumnDefinition Width="1*"/>
-            <!-- Cột cho mã TypeScript -->
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0" Margin="5">
@@ -17,8 +15,8 @@
         </StackPanel>
 
         <StackPanel Grid.Column="1" Margin="5">
-            <TextBlock Text="Mã TypeScript:" FontWeight="Bold" Margin="0,0,0,10"/>
-            <TextBox Name="OutputTypeScriptCode" Height="300" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
+            <TextBlock Text="Thông tin lớp:" FontWeight="Bold" Margin="0,0,0,10"/>
+            <TextBox Name="OutputClassInfo" Height="300" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
         </StackPanel>
     </Grid>
 </Window>
