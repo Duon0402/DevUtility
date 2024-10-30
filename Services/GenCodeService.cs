@@ -92,12 +92,21 @@ namespace DevUtility.Services
             }
         }
 
-        public Result<string> GenCodeIndexTS()
+        public Result<string> GenCodeIndexTS(GenCodeIndexTSRequestModel request)
         {
             string msg;
             var rs = new StringBuilder();
             try
             {
+                if(request == null) 
+                {
+                    msg = "Dữ liệu đầu vào không hợp lệ";
+                    return Result.Error<string>("01", msg);
+                }
+
+                var indexModel = request.IndexModel;
+                var formModel = request.FormModel;
+                var optionModel = request.OptionModel;
 
                 return Result.Ok("");
             }
