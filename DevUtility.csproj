@@ -9,20 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Helpers\CodeHelper.cs" />
+    <Compile Remove="Resources\**" />
+    <EmbeddedResource Remove="Resources\**" />
+    <None Remove="Resources\**" />
+    <Page Remove="Resources\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\" />
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Helpers\CodeHelper.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="WPF-UI" Version="3.0.5" />
+    <PackageReference Include="MaterialDesignThemes" Version="5.1.0" />
   </ItemGroup>
 
 </Project>

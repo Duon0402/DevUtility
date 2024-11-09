@@ -1,7 +1,0 @@
-<UserControl x:Class="DevUtility.Views.SidebarView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:wpfui="http://schemas.lepo.co/wpfui"
-             x:Name="Sidebar">
-
-</UserControl>
