@@ -1,5 +1,4 @@
 ﻿using DevUtility.Base;
-using System.Windows;
 
 namespace DevUtility.ViewModels
 {
@@ -7,7 +6,7 @@ namespace DevUtility.ViewModels
     {
         public MainViewModel()
         {
-            
+
         }
     }
 }

@@ -19,4 +19,9 @@
     <PackageReference Include="MaterialDesignThemes" Version="5.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Base\CONST\" />
+    <Folder Include="Entities\" />
+  </ItemGroup>
+
 </Project>

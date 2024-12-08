@@ -10,7 +10,7 @@
         {
             return dateTime.ToString("yyyy-MM-dd");
         }
-        public static string FormatDate(DateTime dateTime, string format)
+        public static string FormatDate(DateTime dateTime, string? format)
         {
             return dateTime.ToString(format ?? "yyyy-MM-dd");
         }

@@ -3,11 +3,11 @@
 namespace DevUtility.Views
 {
     /// <summary>
-    /// Interaction logic for NavigationRailUserControl.xaml
+    /// Interaction logic for GenCodePage.xaml
     /// </summary>
-    public partial class NavigationRailUserControl : UserControl
+    public partial class GenCodePage : Page
     {
-        public NavigationRailUserControl()
+        public GenCodePage()
         {
             InitializeComponent();
         }

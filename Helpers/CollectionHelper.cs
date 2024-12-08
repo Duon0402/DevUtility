@@ -1,6 +1,4 @@
-﻿using System.Windows.Controls.Primitives;
-
-namespace DevUtility.Helpers
+﻿namespace DevUtility.Helpers
 {
     public static class CollectionHelper
     {
